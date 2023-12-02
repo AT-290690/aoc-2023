@@ -37,13 +37,11 @@ const part2 = (input) =>
     .reduce((acc, [, hands]) => {
       acc.push(
         hands.reduce(
-          (bounds, hand) => {
-            // hand.reduce(([n, color]) => n, Infinity)
-            return hand.reduce((bounds, [n, color]) => {
-              if (bounds.get(color) < n) bounds.set(color, n)
-              return bounds
-            }, bounds)
-          },
+          (bounds, hand) =>
+            hand.reduce((bounds, [n, color]) => {
+              if (bounds.get(color) < n) bounds.set(color, n);
+              return bounds;
+            }, bounds),
           new Map([
             ['red', -Infinity],
             ['green', -Infinity],
