@@ -56,7 +56,7 @@ const part2 = (input) =>
     })
     .reduce((a, b) => a + b, 0)
 
-const input = parse(readFileSync(`${dir.join('/')}/input.txt`, 'utf-8'))
+const input = parse(readFileSync(`${dir.join('/')}/AT/input.txt`, 'utf-8'))
 console.log(
   part1(
     parse(`1abc2
