@@ -39,13 +39,13 @@ const dirs = [
   [-1, -1],
   [1, 1],
 ]
-const adjacent = (X, Y, matrix) => {
+const adjacent = (X, Y, matrix, rule) => {
   for (const [y, x] of dirs) {
     const dx = X + x
     const dy = Y + y
     if (matrix[dy] && matrix[dy][dx]) {
       const cell = matrix[dy][dx]
-      if (!Number.isInteger(cell) && cell !== '.') return 1
+      rule(cell, dy, dx)
     }
   }
   return 0
@@ -58,7 +58,13 @@ const part1 = (matrix) => {
     for (let X = 0; X < matrix[0].length; ++X) {
       const current = matrix[Y][X]
       const isInteger = Number.isInteger(current)
-      if (!isValid && current !== '.') isValid = adjacent(X, Y, matrix)
+      if (!isValid && current !== '.')
+        adjacent(
+          X,
+          Y,
+          matrix,
+          (cell) => !Number.isInteger(cell) && cell !== '.' && (isValid = 1)
+        )
       if (isInteger) local += current
       else {
         if (isValid) sum += local
@@ -68,6 +74,43 @@ const part1 = (matrix) => {
     }
   }
   return sum
+}
+const part2 = (matrix) => {
+  let parts = []
+  let isValid = 0
+  let local = 0
+  for (let Y = 0; Y < matrix.length; ++Y) {
+    for (let X = 0; X < matrix[0].length; ++X) {
+      const current = matrix[Y][X]
+      const isInteger = Number.isInteger(current)
+      if (current !== '.') {
+        adjacent(X, Y, matrix, (cell, dy, dx) => {
+          if (cell === '*') {
+            isValid = 1
+            y1 = dy
+            x1 = dx
+          }
+        })
+      }
+      if (isInteger) local += current
+      else {
+        if (isValid) parts.push([local, y1, x1])
+        local = 0
+        isValid = 0
+      }
+    }
+  }
+  const partition = [
+    ...parts
+      .reduce((a, b) => {
+        const key = `${b.at(1)}-${b.at(2)}`
+        if (a.has(key)) a.get(key).push(b.at(0))
+        else a.set(key, [b.at(0)])
+        return a
+      }, new Map())
+      .values(),
+  ].filter((x) => x.length === 2)
+  return partition.reduce((a, [l, r]) => a + l * r, 0)
 }
 const sample = `
 467..114..
@@ -80,6 +123,9 @@ const sample = `
 ......755.
 ...$.*....
 .664.598..`
+
 const input = parse(readFileSync(`${dir.join('/')}/AT/input.txt`, 'utf-8'))
 console.log(part1(parse(sample)))
 console.log(part1(input))
+console.log(part2(parse(sample)))
+console.log(part2(input))
