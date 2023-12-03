@@ -39,6 +39,17 @@ const dirs = [
   [-1, -1],
   [1, 1],
 ]
+const adjacent = (X, Y, matrix) => {
+  for (const [y, x] of dirs) {
+    const dx = X + x
+    const dy = Y + y
+    if (matrix[dy] && matrix[dy][dx]) {
+      const cell = matrix[dy][dx]
+      if (!Number.isInteger(cell) && cell !== '.') return 1
+    }
+  }
+  return 0
+}
 const part1 = (matrix) => {
   let sum = 0
   let isValid = 0
@@ -47,21 +58,9 @@ const part1 = (matrix) => {
     for (let X = 0; X < matrix[0].length; ++X) {
       const current = matrix[Y][X]
       const isInteger = Number.isInteger(current)
-      if (!isValid && current !== '.') {
-        for (const [y, x] of dirs) {
-          const dx = X + x
-          const dy = Y + y
-          if (matrix[dy] && matrix[dy][dx]) {
-            const cell = matrix[dy][dx]
-            if (!Number.isInteger(cell) && cell !== '.') {
-              isValid = 1
-            }
-          }
-        }
-      }
-      if (isInteger) {
-        local += current
-      } else {
+      if (!isValid && current !== '.') isValid = adjacent(X, Y, matrix)
+      if (isInteger) local += current
+      else {
         if (isValid) sum += local
         local = 0
         isValid = 0
