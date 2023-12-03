@@ -12,24 +12,9 @@ func main() {
 	cubeConundrum2(2)
 }
 
-func isValidGame(color string, number int) bool {
-	if color == "red" && number > 12 {
-		return false
-	}
-
-	if color == "green" && number > 13 {
-		return false
-	}
-
-	if color == "blue" && number > 14 {
-		return false
-	}
-
-	return true
-}
-
 func cubeConundrum1(suffix int) {
 	games := utils.ReadInputLines(suffix)
+	maxDices := map[string]int{"red": 12, "green": 13, "blue": 14}
 
 	sum := 0
 	for idx, game := range games {
@@ -37,13 +22,13 @@ func cubeConundrum1(suffix int) {
 
 		isValid := true
 		for _, set := range sets {
-			throws := strings.Split(set, ", ")
+			dices := strings.Split(set, ", ")
 
-			for _, throw := range throws {
-				numberColor := strings.Split(throw, " ")
+			for _, dice := range dices {
+				numberColor := strings.Split(dice, " ")
 				number := utils.StrToInt(numberColor[0])
 				color := numberColor[1]
-				if !isValidGame(color, number) {
+				if number > maxDices[color] {
 					isValid = false
 					break
 				}
@@ -72,10 +57,10 @@ func cubeConundrum2(suffix int) {
 
 		totals := map[string]int{"red": 0, "green": 0, "blue": 0}
 		for _, set := range sets {
-			throws := strings.Split(set, ", ")
+			dices := strings.Split(set, ", ")
 
-			for _, throw := range throws {
-				numberColor := strings.Split(throw, " ")
+			for _, dice := range dices {
+				numberColor := strings.Split(dice, " ")
 				number := utils.StrToInt(numberColor[0])
 				color := numberColor[1]
 
