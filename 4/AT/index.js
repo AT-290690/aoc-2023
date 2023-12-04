@@ -42,26 +42,21 @@ const part1 = (input) =>
   }, 0)
 
 const part2 = (input) => {
-  const solve = (cards, memo) => {
-    for (const index of cards) {
-      const card = memo.get(index)
-      const [left, right] = card.values
-      card.score += 1
-      const dubs = new Set(right)
-      const rewards = new Set()
-      let reward = 0
-      for (const number of left)
-        if (dubs.has(number)) rewards.add(index + ++reward)
-      if (reward) {
-        solve(rewards, memo)
-      }
-    }
-  }
   const memo = new Map(
     input.map(([index, values]) => [index, { score: 0, values }])
   )
-  const cards = new Set(input.map(([index]) => index))
-  solve(cards, memo)
+  const cards = input.map(([index]) => index)
+  for (const index of cards) {
+    const card = memo.get(index)
+    const [left, right] = card.values
+    card.score += 1
+    const dubs = new Set(right)
+    const rewards = new Set()
+    let reward = 0
+    for (const number of left)
+      if (dubs.has(number)) rewards.add(index + ++reward)
+    if (reward) for (const rew of rewards) memo.get(rew).score += card.score
+  }
   return [...memo.values()].reduce((a, { score }) => a + score, 0)
 }
 console.log(part1(sample))
