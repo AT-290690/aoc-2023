@@ -51,11 +51,11 @@ const part2 = (input) => {
     const [left, right] = card.values
     card.score += 1
     const dubs = new Set(right)
-    const rewards = new Set()
-    let reward = 0
+    const rewards = []
     for (const number of left)
-      if (dubs.has(number)) rewards.add(index + ++reward)
-    if (reward) for (const rew of rewards) memo.get(rew).score += card.score
+      if (dubs.has(number)) rewards.push(index + rewards.length + 1)
+    if (rewards.length)
+      for (const rew of rewards) memo.get(rew).score += card.score
   }
   return [...memo.values()].reduce((a, { score }) => a + score, 0)
 }
