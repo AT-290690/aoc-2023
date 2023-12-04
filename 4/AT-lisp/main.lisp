@@ -1,5 +1,5 @@
 ; To run this code go follow this link
-; https://at-290690.github.io/fez/index.html?l=NwAgCgTgpgzjIGMC2ATEBqE8D2FEBsBLBAaxGwDsQAXACykVsIAdy86BXClKPYy%2BAChBACnxRqIZgEMIMBmOlIARimkhCFZh0kjmhDVp0gRMahE0BzAFwxmRSQCIAOhUcBKE7IjSAntaRpVkUVNRAADxMUbBBBEBNxSW8TMwsKGzsHCJBHaxz3dziEiUMeSL0DIvjqmtrkqtrG%2BJEEWU8GptrTcytbe0InfNjOzpaUCHaRppa24amu1rNbHvSAWgA%2BCg4VXgLC5sTEWRR4CviOkfr56rGJueuZu4vR1N7MgZyAHw97%2BZFvPwBIIJJSqdSRZ7XP76X5QuHZSHwkbdNIZfqDDyIpHTAH%2BeTiBC6fCgsKRcIFLHYhbSJavdIwDZbHZyPZ7Ir%2FCA%2BXylKCRVoQE6stliEowJT2BQyOQMRwAYWOIAAjHkACyKkAqgAcIE1AGYdQA2JUAdhAnx1%2Bs1RpARt16sVppAAE4NdqAKy6wTygUgABMeUV%2Bt1vr9AAYlUaDerzVGQLrwwbtZqQw64yHfSqlU6vQrdXklX71R6QG6XSrMzGXcmbfrjSmjb77ZmlTmfSrVeqnSHjZbMwaXebSzrM8ajW6i9qSyXM3rW2g3XlNaa9X6G9rg2adevw8bw4qQ079b6Q9XdQa5za8naldrAyWjXXN8aR6bFeHfUG3TbTWelYqPIUIqSFK1DqiEYKGNokiUtClRUo0mhQTBcIclyQLBMSoTgiY%2FI4eMESsrC8HNLi1gAGbYPgaDgWE6jKFEMTIdiQEgOIZG6LhygUsRUwsRYli0Bxsh4XgXHcTxoyHCgHD0ahgIUVRID8YJIJYSAdEpBI1jSCgKAAITqSAYleJyfgmJ4IgWVZ5lshJkklIE1AIPQ8ChvsdmNHxUAAO4Koq7keTULEwAguCwCZXIgHu4mBTcpEUXgbFEiS6j8mgTGxZ53n0FQphabQNIAPwgNJ9FpRZ0REZl8JyXiEgGSFYXwI5znhSImC1dYliiqF0DNdITkuZ4%2FkBdVzGkfI1AGeo4btThwnSBZpHdZIjV9UpPnHLZY1UiI2VQLl6wRYCK1YL14UtUNSqTDtmWdZNDXnfA0C%2BT6GW3ShABUx3%2BKda3hS9W1%2BkKBRVXZi2jR5tVRaD728fyrKiPg2CWAZeiyKBWDiuIBRAA
+; https://at-290690.github.io/fez/index.html?l=NwAgCgTgpgzjIGMC2ATEBqE8D2FEBsBLBAaxGwDsQAXACykVsIAdy86BXClKPYy%2BAChBACnxRqIZgEMIMBmOlIARimkhCFZh0kjmhDVp0gRMahE0BzAFwxmRSQCIAOhUcBKE7IjSAntaRpVkUVNRAADxMUbBBBEBNxSW8TMwsKGzsHCJBHaxz3dziEiUMeSL0DIvjqmtrkqtrG%2BJEEWU8GptrTcytbe0InfNjOzpaUCHaRppa24amu1rNbHvSAWgA%2BCg4VXgLC5sTEWRR4CviOkfr56rGJueuZu4vR1N7MgZyAHw97%2BZFvPwBIIJJSqdSRZ7XP76X5QuHZSHwkbdNIZfqDDyIpHTAH%2BeTiBC6fCgsKRcIFLHYhbSJavdIwDZbHZyPZ7Ir%2FCA%2BXylKCRVoQE6stliEowJT2BQyOQMRwAYWOIAAjHkACyKkAqgAcIE1AGYdQA2JUAdhAnx1%2Bs1RpARt16sVppAAE4NdqAKy6wTygUgABMeUV%2Bt1vr9AAYlUaDerzVGQLrwwbtZqQw64yHfSqlU6vQrdXklX71R6QG6XSrMzGXcmbfrjSmjb77ZmlTmfSrVeqnSHjZbMwaXebSzrM8ajW6i9qSyXM3rW2g3XlNaa9X6G9rg2adevw8bw4qQ079b6Q9XdQa5za8naldrAyWjXXN8aR6bFeHfUG3TbTWelYqPIUIqSFK1DqiEYKGNokiUtClRUo0mhQTBcIclyQLBMSoTgiY%2FI4eMESsrC8HNLi1gAGbYPgaDgWE6jKFEMTIdiQEgOIZG6LhygUsRUwsRYli0Bxsh4XgXHcTxoyHCgHD0ahgIUVRID8YJIJYSAdEpBI1jSCgKAAITqSAYleJyfgmJ4IgWVZ5lshJkklIE1AIPQpwAG6yNYPBkSAobiXZXSHNAADuCoiO5ECeVA3mKn5%2Fk3KRFF4GxRIkuo%2FJoExcXTEF9BUKYWm0DSAD8IDSfR6UWdERFZUiYUefI1AGY5zmwCYmB1RFlgOdITkuZ4MX7DVxFyXiEgGeo4YiO1uHSBZ4XWF1kjBcctlDfBIg5VAeXrCY82LSAzV9UqkxrUNHW2GNSlQCFPqZad8IiAAVLtHn7ctAqeL6QoFNVdmzYNWUjT5P13bx%2FKssIYjYJYBl6LIoFYOK4gFEAA%3D%3D%3D
 
 (let parse (lambda input (pi input (string:split "\n") (array:map (lambda x (do 
   (let arr (string:split x ": "))
@@ -36,16 +36,15 @@ Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11"))
                               (let left (car b))
                               (let right (car (cdr b)))
                               (let dub (array:fold right (lambda a b (set:add! a b)) (array () () () () ())))
-                              (let matches 0)
-                              (let reward 1)
-                              (let scores (array 0 1))
+                              (let matches (var:def 0))
+                              (let reward (var:def 1))
                               (array:for left (lambda card 
                                               (when (set:has? dub card) (do 
-                                                (array:set! scores matches (+ (array:get scores matches) 1))
-                                                (array:set! a 0 (+ (car a) (array:get scores reward)))
-                                                (when (> (array:get scores matches) 1) 
-                                                          (array:set! scores reward 
-                                                            (* (array:get scores reward) 2))))))) 
+                                                (var:set! matches (+ (var:get matches) 1))
+                                                (array:set! a 0 (+ (car a) (var:get reward)))
+                                                (when (> (var:get matches) 1) 
+                                                          (var:set! reward 
+                                                            (* (var:get reward) 2))))))) 
                               a))
                             (array 0)) 
                           (car))))
