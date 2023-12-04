@@ -13,7 +13,7 @@ func main() {
 	scratchcards2(2)
 }
 
-func getWinNumbersCount(winNumbersStr, userNumbersStr string) int {
+func getWinsCount(winNumbersStr, userNumbersStr string) int {
 	count := 0
 
 	winNumbersMap := make(map[int]bool)
@@ -40,7 +40,7 @@ func scratchcards1(suffix int) {
 	for _, line := range lines {
 		cardNumbers := strings.Split(line, ": ")
 		winUserNumbers := strings.Split(cardNumbers[1], " | ")
-		points := getWinNumbersCount(winUserNumbers[0], winUserNumbers[1])
+		points := getWinsCount(winUserNumbers[0], winUserNumbers[1])
 
 		if points > 2 {
 			points = int(math.Pow(2, float64(points)-1))
@@ -63,7 +63,7 @@ func scratchcards2(suffix int) {
 		winUserNumbers := strings.Split(cardNumbers[1], " | ")
 
 		winCounts[idx]++
-		wins := getWinNumbersCount(winUserNumbers[0], winUserNumbers[1])
+		wins := getWinsCount(winUserNumbers[0], winUserNumbers[1])
 		for winIdx := 0; winIdx < wins; winIdx++ {
 			winCounts[winIdx+idx+1] += winCounts[idx]
 		}
