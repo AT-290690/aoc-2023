@@ -43,9 +43,9 @@ const part2 = (input) =>
               return bounds
             }, bounds),
           new Map([
-            ['red', -Infinity],
-            ['green', -Infinity],
-            ['blue', -Infinity],
+            ['red', 0],
+            ['green', 0],
+            ['blue', 0],
           ])
         )
       )
