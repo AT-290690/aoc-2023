@@ -112,7 +112,7 @@ const part2 = (matrix) => {
   ].filter((x) => x.length === 2)
   return partition.reduce((a, [l, r]) => a + l * r, 0)
 }
-const sample = `
+const sample = parse(`
 467..114..
 ...*......
 ..35..633.
@@ -122,10 +122,10 @@ const sample = `
 ..592.....
 ......755.
 ...$.*....
-.664.598..`
+.664.598..`)
 
 const input = parse(readFileSync(`${dir.join('/')}/AT/input.txt`, 'utf-8'))
-console.log(part1(parse(sample)))
+console.log(part1(sample))
 console.log(part1(input))
-console.log(part2(parse(sample)))
+console.log(part2(sample))
 console.log(part2(input))
