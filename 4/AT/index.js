@@ -46,7 +46,7 @@ const part2 = (input) => {
     for (const index of cards) {
       const card = memo.get(index)
       const [left, right] = card.values
-      memo.get(index).score += 1
+      card.score += 1
       const dubs = new Set(right)
       const rewards = new Set()
       let reward = 0
@@ -64,7 +64,6 @@ const part2 = (input) => {
   solve(cards, memo)
   return [...memo.values()].reduce((a, { score }) => a + score, 0)
 }
-
 console.log(part1(sample))
 console.log(part1(input))
 console.log(part2(sample))
