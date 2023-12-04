@@ -27,8 +27,7 @@ func trebuchet1(suffix int) {
 			}
 		}
 
-		number := getNumber(numbersArr)
-		sum = sum + number
+		sum += getNumber(numbersArr)
 	}
 
 	result := fmt.Sprint(sum)
@@ -60,8 +59,7 @@ func trebuchet2(suffix int) {
 			}
 		}
 
-		number := getNumber(numbersArr)
-		sum = sum + number
+		sum += getNumber(numbersArr)
 	}
 
 	result := fmt.Sprint(sum)

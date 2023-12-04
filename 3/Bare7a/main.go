@@ -55,7 +55,7 @@ func gearRatios1(suffix int) {
 			}
 
 			if isValid && len(currNumber) > 0 {
-				sum = sum + utils.StrToInt(currNumber)
+				sum += utils.StrToInt(currNumber)
 			}
 
 			isValid = false
@@ -63,7 +63,7 @@ func gearRatios1(suffix int) {
 		}
 
 		if isValid && len(currNumber) > 0 {
-			sum = sum + utils.StrToInt(currNumber)
+			sum += utils.StrToInt(currNumber)
 		}
 	}
 
@@ -107,7 +107,7 @@ func getGearSum(coordsMap *map[string][]int) int {
 		if len(numbers) != 2 {
 			continue
 		}
-		sum = sum + (numbers[0] * numbers[1])
+		sum += (numbers[0] * numbers[1])
 	}
 
 	return sum
