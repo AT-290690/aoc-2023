@@ -40,7 +40,7 @@ func cubeConundrum1(suffix int) {
 		}
 
 		if isValid {
-			sum = sum + idx + 1
+			sum += idx + 1
 		}
 	}
 
@@ -70,8 +70,7 @@ func cubeConundrum2(suffix int) {
 			}
 		}
 
-		gameSum := totals["red"] * totals["green"] * totals["blue"]
-		sum = sum + gameSum
+		sum += totals["red"] * totals["green"] * totals["blue"]
 	}
 
 	result := fmt.Sprint(sum)
