@@ -41,6 +41,32 @@ const part1 = (input) =>
     return a
   }, 0)
 
+// Slow recursive version
+// const part2 = (input) => {
+//   const solve = (cards, memo) => {
+//     for (const index of cards) {
+//       const card = memo.get(index)
+//       const [left, right] = card.values
+//       memo.get(index).score += 1
+//       const dubs = new Set(right)
+//       const rewards = new Set()
+//       let reward = 0
+//       for (const number of left)
+//         if (dubs.has(number)) rewards.add(index + ++reward)
+//       if (reward) {
+//         solve(rewards, memo)
+//       }
+//     }
+//   }
+//   const memo = new Map(
+//     input.map(([index, values]) => [index, { score: 0, values }])
+//   )
+//   const cards = new Set(input.map(([index]) => index))
+//   solve(cards, memo)
+//   return [...memo.values()].reduce((a, { score }) => a + score, 0)
+// }
+
+// Optimised
 const part2 = (input) => {
   const memo = new Map(
     input.map(([index, values]) => [index, { score: 0, values }])
