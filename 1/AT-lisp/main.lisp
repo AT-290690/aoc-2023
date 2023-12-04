@@ -11,7 +11,7 @@
                                         (cast:string->char-codes)
                                         (array:select (lambda char (< char offset)))
                                         (cast:char-codes->chars)))
-                            (cast:string->number (concatenate (array:get num 0) (array:get num -1))))))
+                              (cast:string->number (concatenate (array:get num 0) (array:get num -1))))))
                           (math:summation))))
 (let sample "1abc2
 pqr3stu8vwx
