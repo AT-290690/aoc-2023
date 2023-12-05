@@ -124,12 +124,4 @@ const part2 = ({ seeds, maps }) => {
 }
 console.log(part1(sample))
 console.log(part1(input))
-// console.log(part2(sample))
-// console.log(part1(sample))
-// console.log(part1(input))
 console.log(part2(sample))
-// console.log(part2(input))
-// too high 88151870
-// too high 104847961
-// 12311319
-// 12311318 too high
