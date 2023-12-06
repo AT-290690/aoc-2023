@@ -1,4 +1,4 @@
-// my goal is to solve them on "one line"
+// my goal is to solve them on "one line" and avoid repetition,
 // even if it makes it more unreadable or complicated
 
 export const solveDay1Part1 = (doc) =>
