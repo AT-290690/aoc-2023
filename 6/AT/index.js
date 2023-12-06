@@ -23,7 +23,7 @@ const part1 = ([times, distances]) => {
     const time = times[i]
     const dist = distances[i]
     let result = 0
-    for (let charge = 0, end = time + 1; charge < end; ++charge)
+    for (let charge = 0, end = time; charge < end; ++charge)
       if ((time - charge) * charge > dist) ++result
     out *= result
   }
@@ -33,7 +33,7 @@ const part2 = ([times, distances]) => {
   const time = +times.join('')
   const dist = +distances.join('')
   let result = 0
-  for (let charge = 0, end = time + 1; charge < end; ++charge)
+  for (let charge = 0, end = time; charge < end; ++charge)
     if ((time - charge) * charge > dist) ++result
   return result
 }
