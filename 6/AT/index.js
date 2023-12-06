@@ -34,16 +34,12 @@ const part1 = ([times, distances]) => {
 }
 const part2 = ([times, distances]) => {
   const race = (h, t) => (t - h) * h
-  const out = []
   const time = +times.join('')
   const dist = +distances.join('')
-  out.push(
-    Array(time + 1)
-      .fill(null)
-      .map((_, j) => race(j, time))
-      .filter((x) => x > dist).length
-  )
-  return out.reduce((a, b) => a * b, 1)
+  let result = 0
+  for (let i = 0, end = time + 1; i < end; ++i)
+    if (race(i, time) > dist) ++result
+  return result
 }
 console.log(part1(sample))
 console.log(part1(input))
