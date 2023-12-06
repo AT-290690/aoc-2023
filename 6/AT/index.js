@@ -19,18 +19,16 @@ Time:      7  15   30
 Distance:  9  40  200`)
 const part1 = ([times, distances]) => {
   const race = (h, t) => (t - h) * h
-  const out = []
+  let out = 1
   for (let i = 0; i < times.length; ++i) {
     const time = times[i]
     const dist = distances[i]
-    out.push(
-      Array(time + 1)
-        .fill(null)
-        .map((_, j) => race(j, time))
-        .filter((x) => x > dist).length
-    )
+    let result = 0
+    for (let i = 0, end = time + 1; i < end; ++i)
+      if (race(i, time) > dist) ++result
+    out *= result
   }
-  return out.reduce((a, b) => a * b, 1)
+  return out
 }
 const part2 = ([times, distances]) => {
   const race = (h, t) => (t - h) * h
@@ -43,5 +41,5 @@ const part2 = ([times, distances]) => {
 }
 console.log(part1(sample))
 console.log(part1(input))
-console.log(part1(sample))
+console.log(part2(sample))
 console.log(part2(input))
