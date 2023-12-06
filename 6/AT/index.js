@@ -13,11 +13,17 @@ const parse = (input) =>
         .filter(Boolean)
         .map((x) => +x.trim())
     )
-const input = parse(readFileSync(`${dir.join('/')}/AT/input.txt`, 'utf-8'))
-const sample = parse(`
+const parse2 = (input) =>
+  parse(input).map((x) => [+x.reduce((a, b) => a + b, '')])
+const input1 = parse(readFileSync(`${dir.join('/')}/AT/input.txt`, 'utf-8'))
+const input2 = parse2(readFileSync(`${dir.join('/')}/AT/input.txt`, 'utf-8'))
+const sample1 = parse(`
 Time:      7  15   30
 Distance:  9  40  200`)
-const part1 = ([times, distances]) => {
+const sample2 = parse2(`
+Time:      7  15   30
+Distance:  9  40  200`)
+const solve = ([times, distances]) => {
   let out = 1
   for (let i = 0; i < times.length; ++i) {
     const time = times[i]
@@ -29,15 +35,7 @@ const part1 = ([times, distances]) => {
   }
   return out
 }
-const part2 = ([times, distances]) => {
-  const time = +times.join('')
-  const dist = +distances.join('')
-  let result = 0
-  for (let charge = 0, end = time; charge < end; ++charge)
-    if ((time - charge) * charge > dist) ++result
-  return result
-}
-console.log(part1(sample))
-console.log(part1(input))
-console.log(part2(sample))
-console.log(part2(input))
+console.log(solve(sample1))
+console.log(solve(input1))
+console.log(solve(sample2))
+console.log(solve(input2))
