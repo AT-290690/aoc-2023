@@ -18,25 +18,23 @@ const sample = parse(`
 Time:      7  15   30
 Distance:  9  40  200`)
 const part1 = ([times, distances]) => {
-  const race = (h, t) => (t - h) * h
   let out = 1
   for (let i = 0; i < times.length; ++i) {
     const time = times[i]
     const dist = distances[i]
     let result = 0
-    for (let i = 0, end = time + 1; i < end; ++i)
-      if (race(i, time) > dist) ++result
+    for (let charge = 0, end = time + 1; charge < end; ++charge)
+      if ((time - charge) * charge > dist) ++result
     out *= result
   }
   return out
 }
 const part2 = ([times, distances]) => {
-  const race = (h, t) => (t - h) * h
   const time = +times.join('')
   const dist = +distances.join('')
   let result = 0
-  for (let i = 0, end = time + 1; i < end; ++i)
-    if (race(i, time) > dist) ++result
+  for (let charge = 0, end = time + 1; charge < end; ++charge)
+    if ((time - charge) * charge > dist) ++result
   return result
 }
 console.log(part1(sample))
