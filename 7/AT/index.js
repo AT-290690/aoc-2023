@@ -93,12 +93,10 @@ const part2 = (cards) => {
     const combos = []
     for (let i = 0; i < hand.length; ++i)
       if (hand[i] === 'J')
-        for (const card of hand) {
-          if (card !== 'J') {
-            const combo = [...hand]
-            combo[i] = card
-            combos.push(combo)
-          }
+        for (const card of hand.filter((card) => card !== 'J')) {
+          const combo = [...hand]
+          combo[i] = card
+          combos.push(combo)
         }
     return N === 0
       ? combos
