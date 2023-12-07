@@ -54,16 +54,14 @@ const part1 = (cards) => {
       bid,
     })
   }
-  const ordered = plays
-    .sort((a, b) => {
-      if (a.order !== b.order) return b.order - a.order
-      else {
-        for (let i = 0; i < a.hand.length; ++i) {
-          if (a.hand[i] !== b.hand[i]) return b.hand[i] - a.hand[i]
-        }
+  const ordered = plays.sort((a, b) => {
+    if (a.order !== b.order) return a.order - b.order
+    else {
+      for (let i = 0; i < a.hand.length; ++i) {
+        if (a.hand[i] !== b.hand[i]) return a.hand[i] - b.hand[i]
       }
-    })
-    .reverse()
+    }
+  })
   const bids = ordered.map((x) => x.bid)
   return bids.reduce((a, x, i) => a + x * (i + 1), 0)
 }
