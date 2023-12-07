@@ -15,38 +15,41 @@ QQQJA 483`)
 const input = parse(readFileSync(`${dir.join('/')}/AT/input.txt`, 'utf-8'))
 const cardsToStrength = (card, strength) =>
   card in strength ? strength[card] : +card
-const pairsToRank = (pairs) => {
-  if (pairs.get(4) && pairs.get(4).length === 1) return 6
-  if (pairs.get(3) && pairs.get(3).length === 1) return 5
-  if (pairs.get(2) && pairs.get(1)) return 4
-  if (pairs.get(2) && pairs.get(2).length === 1) return 3
-  if (pairs.get(1) && pairs.get(1).length === 2) return 2
-  if (pairs.get(1) && pairs.get(1).length === 1) return 1
-  else return 0
-}
+const pairsToRank = (pairs) =>
+  pairs.get(4) && pairs.get(4).length === 1
+    ? 6
+    : pairs.get(3) && pairs.get(3).length === 1
+    ? 5
+    : pairs.get(2) && pairs.get(1)
+    ? 4
+    : pairs.get(2) && pairs.get(2).length === 1
+    ? 3
+    : pairs.get(1) && pairs.get(1).length === 2
+    ? 2
+    : pairs.get(1) && pairs.get(1).length === 1
+    ? 1
+    : 0
 const playToPairs = (play) => {
   const pairs = new Map()
-  for (const [k, v] of play) {
+  for (const [k, v] of play)
     if (!pairs.has(v)) pairs.set(v, [k])
     else pairs.get(v).push(k)
-  }
   return pairs
 }
 const cardsToPlays = (cards, callback, STRENGTH) => {
   let plays = []
   for (const [hand, bid] of cards) {
     const play = new Map()
-    const strength = hand.map((card) => cardsToStrength(card, STRENGTH))
-    for (const h of strength) {
-      if (play.has(h)) {
-        const current = play.get(h)
-        play.set(h, current + 1)
-      } else play.set(h, 0)
-    }
+    const strengths = hand.map((card) => cardsToStrength(card, STRENGTH))
+    for (const strength of strengths)
+      if (play.has(strength)) {
+        const current = play.get(strength)
+        play.set(strength, current + 1)
+      } else play.set(strength, 0)
     const order = callback(play, hand)
     plays.push({
       order,
-      hand: strength,
+      strengths,
       bid,
     })
   }
@@ -57,11 +60,13 @@ const playsToOrdered = (plays) =>
   plays.sort((a, b) => {
     if (a.order !== b.order) return a.order - b.order
     else
-      for (let i = 0; i < a.hand.length; ++i)
-        if (a.hand[i] !== b.hand[i]) return a.hand[i] - b.hand[i]
+      for (let i = 0; i < a.strengths.length; ++i)
+        if (a.strengths[i] !== b.strengths[i])
+          return a.strengths[i] - b.strengths[i]
   })
-const orderedToBids = (ordered) => ordered.map((x) => x.bid)
-const bidsToResult = (bids) => bids.reduce((a, x, i) => a + x * (i + 1), 0)
+const orderedToBids = (ordered) => ordered.map(({ bid }) => bid)
+const bidsToResult = (bids) =>
+  bids.reduce((result, bid, index) => result + bid * (index + 1), 0)
 const part1 = (cards) => {
   const STRENGTH = {
     A: 14,
@@ -70,11 +75,11 @@ const part1 = (cards) => {
     J: 11,
     T: 10,
   }
-  const ordered = playsToOrdered(
-    cardsToPlays(cards, playsToPairRanks, STRENGTH)
+  return bidsToResult(
+    orderedToBids(
+      playsToOrdered(cardsToPlays(cards, playsToPairRanks, STRENGTH))
+    )
   )
-  const bids = ordered.map((x) => x.bid)
-  return bids.reduce((a, x, i) => a + x * (i + 1), 0)
 }
 const part2 = (cards) => {
   const STRENGTH = {
