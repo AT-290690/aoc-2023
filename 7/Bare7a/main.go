@@ -168,7 +168,6 @@ func camelCards2(suffix int) {
 	sum := 0
 	for idx, hand := range hands {
 		sum += hand.bet * (idx + 1)
-		fmt.Println(hand.cards, hand.power, (idx + 1))
 	}
 
 	result := fmt.Sprint(sum)
