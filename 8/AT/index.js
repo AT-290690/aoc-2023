@@ -33,32 +33,69 @@ const sample2 = parse(`LLR
 AAA = (BBB, BBB)
 BBB = (AAA, ZZZ)
 ZZZ = (ZZZ, ZZZ`)
-const input = parse(readFileSync(`${dir.join('/')}/AT/input.txt`, 'utf-8'))
-const part1Rec = ([dirs, adj]) => {
-  const move = (current, target, step = 0) => {
-    const node = adj[current][dirs[step % dirs.length]]
-    return node === target ? step : move(node, target, ++step)
-  }
-  return move('AAA', 'ZZZ') + 1
-}
+const sample3 = parse(`LR
 
+11A = (11B, XXX)
+11B = (XXX, 11Z)
+11Z = (11B, XXX)
+22A = (22B, XXX)
+22B = (22C, 22C)
+22C = (22Z, 22Z)
+22Z = (22B, 22B)
+XXX = (XXX, XXX)`)
+const input = parse(readFileSync(`${dir.join('/')}/AT/input.txt`, 'utf-8'))
+// const tco =
+//   (fn) =>
+//   (...args) => {
+//     let result = fn(...args)
+//     while (typeof result === 'function') result = result()
+//     return result
+//   }
+// const part1Rec = ([dirs, adj]) => {
+//   const move = tco(
+//     (rec = (source, target, step = 0) => {
+//       const node = adj[source][dirs[step % dirs.length]]
+//       return node === target ? step : () => rec(node, target, ++step)
+//     })
+//   )
+//   return move('AAA', 'ZZZ') + 1
+// }
+const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b))
+const lcm = (a, b) => (a / gcd(a, b)) * b
 const part1 = ([dirs, adj]) => {
-  let current = 'AAA'
+  let source = 'AAA'
   let target = 'ZZZ'
   let node
   let step = 0
   let count = 0
   while (node !== target) {
     ++count
-    node = adj[current][dirs[step]]
+    node = adj[source][dirs[step]]
     step = (step + 1) % dirs.length
-    current = node
+    source = node
   }
   return count
 }
-
+const part2 = ([dirs, adj]) =>
+  Object.keys(adj)
+    .filter((x) => x[x.length - 1] === 'A')
+    .reduce((counts, source) => {
+      let count = 0
+      let node = source
+      let step = 0
+      while (node[node.length - 1] !== 'Z') {
+        ++count
+        node = adj[source][dirs[step]]
+        step = (step + 1) % dirs.length
+        source = node
+      }
+      counts.push(count)
+      return counts
+    }, [])
+    .reduce(lcm, 1)
 console.log(part1(sample1))
 console.log(part1(sample2))
-console.log(part1Rec(sample1))
-console.log(part1Rec(sample2))
 console.log(part1(input))
+console.log(part2(sample2))
+console.log(part2(sample3))
+console.log(part2(input))
