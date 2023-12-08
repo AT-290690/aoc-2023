@@ -97,7 +97,7 @@ const part1 = ([dirs, adj]) => {
 const part2 = ([dirs, adj]) =>
   Object.keys(adj)
     .filter((x) => x[x.length - 1] === 'A')
-    .reduce((counts, source) => {
+    .map((source) => {
       let count = 0
       let node = source
       let step = 0
@@ -107,9 +107,8 @@ const part2 = ([dirs, adj]) =>
         step = (step + 1) % dirs.length
         source = node
       }
-      counts.push(count)
-      return counts
-    }, [])
+      return count
+    })
     .reduce(lcm, 1)
 console.log(part1(sample1))
 console.log(part1(sample2))
