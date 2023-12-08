@@ -60,6 +60,24 @@ const input = parse(readFileSync(`${dir.join('/')}/AT/input.txt`, 'utf-8'))
 //   )
 //   return move('AAA', 'ZZZ') + 1
 // }
+
+// const part2Slow = ([dirs, adj]) => {
+//   const keys = Object.keys(adj)
+//   let sources = keys.filter((x) => x[x.length - 1] === 'A')
+//   const target = 'Z'
+//   let nodes = sources
+//   let step = 0
+//   let count = 0
+//   while (nodes.some((source) => source[source.length - 1] !== target)) {
+//     ++count
+//     const direction = dirs[step]
+//     nodes = sources.map((source) => adj[source][direction])
+//     step = (step + 1) % dirs.length
+//     sources = nodes
+//   }
+//   return count
+// }
+
 const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b))
 const lcm = (a, b) => (a / gcd(a, b)) * b
 const part1 = ([dirs, adj]) => {
