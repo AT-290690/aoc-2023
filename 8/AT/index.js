@@ -32,7 +32,7 @@ const sample2 = parse(`LLR
 
 AAA = (BBB, BBB)
 BBB = (AAA, ZZZ)
-ZZZ = (ZZZ, ZZZ`)
+ZZZ = (ZZZ, ZZZ)`)
 const sample3 = parse(`LR
 
 11A = (11B, XXX)
@@ -63,7 +63,7 @@ const input = parse(readFileSync(`${dir.join('/')}/AT/input.txt`, 'utf-8'))
 
 // const part2Slow = ([dirs, adj]) => {
 //   const keys = Object.keys(adj)
-//   let sources = keys.filter((x) => x[x.length - 1] === 'A')
+//   let sources = keys.filter((source) => source[source.length - 1] === 'A')
 //   const target = 'Z'
 //   let nodes = sources
 //   let step = 0
@@ -79,7 +79,7 @@ const input = parse(readFileSync(`${dir.join('/')}/AT/input.txt`, 'utf-8'))
 // }
 
 const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b))
-const lcm = (a, b) => (a / gcd(a, b)) * b
+const lcd = (a, b) => (a / gcd(a, b)) * b
 const part1 = ([dirs, adj]) => {
   let source = 'AAA'
   let target = 'ZZZ'
@@ -96,20 +96,20 @@ const part1 = ([dirs, adj]) => {
 }
 const part2 = ([dirs, adj]) =>
   Object.keys(adj)
-    .filter((x) => x[x.length - 1] === 'A')
+    .filter((source) => source[source.length - 1] === 'A')
     .map((source) => {
       let count = 0
-      let node = source
+      let cursor = source
       let step = 0
-      while (node[node.length - 1] !== 'Z') {
+      while (cursor[cursor.length - 1] !== 'Z') {
         ++count
-        node = adj[source][dirs[step]]
+        cursor = adj[source][dirs[step]]
         step = (step + 1) % dirs.length
-        source = node
+        source = cursor
       }
       return count
     })
-    .reduce(lcm, 1)
+    .reduce(lcd, 1)
 console.log(part1(sample1))
 console.log(part1(sample2))
 console.log(part1(input))
