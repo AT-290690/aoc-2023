@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	// hauntedWasteland1(1)
+	hauntedWasteland1(1)
 	hauntedWasteland2(2)
 }
 
