@@ -18,8 +18,5 @@ pqr3stu8vwx
 a1b2c3d4e5f
 treb7uchet")
 
-(pi 
-  sample 
-  (parse) 
-  (part1) 
-  (log!))
+(assert
+  (case "part 1 sample 142" (pi sample (parse) (part1)) 142))

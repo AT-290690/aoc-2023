@@ -11,4 +11,7 @@
                                           (array:map (lambda hold (* (- time hold) hold)))
                                           (array:count-of (lambda rec (> rec dist)))))))
                              (math:product))))
-(log! (solve (array (array 7 15 30) (array 9 40 200))))
+
+(assert
+  (case "part 1 sample" 
+    (solve (array (array 7 15 30) (array 9 40 200))) 288))
