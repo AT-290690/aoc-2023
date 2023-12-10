@@ -37,7 +37,7 @@ const dirs = [
   [-1, -1],
   [1, 1],
 ]
-const adjacent = (X, Y, matrix, rule) => {
+const adjacent = (Y, X, matrix, rule) => {
   for (const [y, x] of dirs) {
     const dx = X + x
     const dy = Y + y
@@ -58,8 +58,8 @@ const part1 = (matrix) => {
       const isInteger = Number.isInteger(current)
       if (!isValid && current !== '.')
         adjacent(
-          X,
           Y,
+          X,
           matrix,
           (cell) => !Number.isInteger(cell) && cell !== '.' && (isValid = 1)
         )
@@ -84,7 +84,7 @@ const part2 = (matrix) => {
       const current = matrix[Y][X]
       const isInteger = Number.isInteger(current)
       if (current !== '.') {
-        adjacent(X, Y, matrix, (cell, dy, dx) => {
+        adjacent(Y, X, matrix, (cell, dy, dx) => {
           if (cell === '*') {
             isValid = 1
             y1 = dy
