@@ -1,6 +1,4 @@
-const { readFileSync } = require('fs')
-const dir = __dirname.split('/')
-dir.pop()
+import { read } from '../../AT/utils.js'
 let base = 1
 const parse = (input) => {
   const N = input.indexOf('\n')
@@ -79,6 +77,8 @@ const part2 = (matrix) => {
   let parts = []
   let isValid = 0
   let local = 0
+  let y1 = 0
+  let x1 = 0
   for (let Y = 0; Y < matrix.length; ++Y) {
     for (let X = 0; X < matrix[0].length; ++X) {
       const current = matrix[Y][X]
@@ -124,7 +124,7 @@ const sample = parse(`
 ...$.*....
 .664.598..`)
 
-const input = parse(readFileSync(`${dir.join('/')}/AT/input.txt`, 'utf-8'))
+const input = parse(read())
 console.log(part1(sample))
 console.log(part1(input))
 console.log(part2(sample))

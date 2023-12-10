@@ -1,6 +1,4 @@
-const { readFileSync } = require('fs')
-const dir = __dirname.split('/')
-dir.pop()
+import { read } from '../../AT/utils.js'
 const parse = (input) =>
   input
     .trim()
@@ -15,8 +13,8 @@ const parse = (input) =>
     )
 const parse2 = (input) =>
   parse(input).map((x) => [+x.reduce((a, b) => a + b, '')])
-const input1 = parse(readFileSync(`${dir.join('/')}/AT/input.txt`, 'utf-8'))
-const input2 = parse2(readFileSync(`${dir.join('/')}/AT/input.txt`, 'utf-8'))
+const input1 = parse(read())
+const input2 = parse2(read())
 const sample1 = parse(`
 Time:      7  15   30
 Distance:  9  40  200`)

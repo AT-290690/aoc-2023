@@ -1,6 +1,4 @@
-const { readFileSync } = require('fs')
-const dir = __dirname.split('/')
-dir.pop()
+import { read } from '../../AT/utils.js'
 const parse = (input) => {
   // // JavaScript object is not guaranteed to order...
   // const order = {
@@ -36,7 +34,7 @@ const parse = (input) => {
     maps,
   }
 }
-const input = parse(readFileSync(`${dir.join('/')}/AT/input.txt`, 'utf-8'))
+const input = parse(read())
 const sample = parse(`seeds: 79 14 55 13
 
 seed-to-soil map:

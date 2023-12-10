@@ -1,6 +1,4 @@
-const { readFileSync } = require('fs')
-const dir = __dirname.split('/')
-dir.pop()
+import { read } from '../../AT/utils.js'
 const parse = (input) =>
   input
     .trim()
@@ -12,7 +10,7 @@ T55J5 684
 KK677 28
 KTJJT 220
 QQQJA 483`)
-const input = parse(readFileSync(`${dir.join('/')}/AT/input.txt`, 'utf-8'))
+const input = parse(read())
 const cardsToStrength = (card, strength) =>
   card in strength ? strength[card] : +card
 const pairsToRank = (pairs) =>

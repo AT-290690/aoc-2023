@@ -1,4 +1,5 @@
-const { readFileSync } = require('fs')
+import { read } from '../../AT/utils.js'
+
 const words = [
   'one',
   'two',
@@ -10,8 +11,6 @@ const words = [
   'eight',
   'nine',
 ]
-const dir = __dirname.split('/')
-dir.pop()
 const parse = (input) => input.trim().split('\n')
 const offset = 'a'.charCodeAt(0)
 const part1 = (input) =>
@@ -56,7 +55,7 @@ const part2 = (input) =>
     })
     .reduce((a, b) => a + b, 0)
 
-const input = parse(readFileSync(`${dir.join('/')}/AT/input.txt`, 'utf-8'))
+const input = parse(read())
 console.log(
   part1(
     parse(`1abc2
