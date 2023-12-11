@@ -31,9 +31,8 @@ const sample2 = parse(`
 .........#...
 #....#.......`)
 const manhattan = (y1, y2, x1, x2) => Math.abs(x1 - x2) + Math.abs(y1 - y2)
-const distance = (source, target) => {
-  return manhattan(source.y, target.y, source.x, target.x)
-}
+const distance = (source, target) =>
+  manhattan(source.y, target.y, source.x, target.x)
 const show = (universe) =>
   universe
     .map((x) => x.map((y) => (y ? y.toString() : '.')).join(''))
@@ -50,7 +49,7 @@ const inputToUniverse = (input) => {
   let count = 0
   return input.map((x) => x.map((y) => (y === '#' ? ++count : 0)))
 }
-const expandUniverse = (universe) => {
+const expansiion = (universe) => {
   const horizontal = []
   const vertical = []
   const height = universe.length
@@ -65,8 +64,13 @@ const expandUniverse = (universe) => {
     horizontal.push((1 - h) * 1)
     vertical.push((1 - v) * 1)
   }
+  return { horizontal, vertical }
+}
+const expandUniverse = (universe, { horizontal, vertical }) => {
   const expanded = []
   let max = -Infinity
+  const height = universe.length
+  const width = universe[0].length
   for (let y = 0; y < height; ++y) {
     expanded.push([])
     for (let x = 0; x < width; ++x) {
@@ -91,10 +95,29 @@ const universeToGalaxies = (universe) => {
       if (universe[y][x]) galaxies.push({ x, y })
   return galaxies
 }
-const part1 = (input) =>
-  pairwise(universeToGalaxies(expandUniverse(inputToUniverse(input))))
+const part1 = (input) => {
+  const universe = inputToUniverse(input)
+  return pairwise(
+    universeToGalaxies(expandUniverse(universe, expansiion(universe)))
+  )
     .map(([a, b]) => distance(a, b))
     .reduce((a, b) => a + b, 0)
+}
+const part2 = (input) => {
+  const universe = inputToUniverse(input)
+  const a = pairwise(
+    universeToGalaxies(expandUniverse(universe, expansiion(universe)))
+  )
+    .map(([a, b]) => distance(a, b))
+    .reduce((a, b) => a + b, 0)
+  const b = pairwise(universeToGalaxies(universe))
+    .map(([a, b]) => distance(a, b))
+    .reduce((a, b) => a + b, 0)
+  const N = 1_000_000
+  return b + (a - b) * (N - 1)
+}
 const input = parse(read())
 console.log(part1(sample))
 console.log(part1(input))
+console.log(part2(sample))
+console.log(part2(input))
