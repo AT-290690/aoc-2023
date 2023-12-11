@@ -85,14 +85,11 @@ const expandUniverse = (universe) => {
   return expanded
 }
 const universeToGalaxies = (universe) => {
-  const pairs = []
-  for (let y = 0; y < universe.length; ++y) {
-    for (let x = 0; x < universe[0].length; ++x) {
-      const v = universe[y][x]
-      if (v) pairs.push({ v, x, y })
-    }
-  }
-  return pairs
+  const galaxies = []
+  for (let y = 0; y < universe.length; ++y)
+    for (let x = 0; x < universe[0].length; ++x)
+      if (universe[y][x]) galaxies.push({ x, y })
+  return galaxies
 }
 const part1 = (input) =>
   pairwise(universeToGalaxies(expandUniverse(inputToUniverse(input))))
