@@ -86,12 +86,10 @@ const part1 = (input) => {
       if (v) pairs.push({ v, x, y })
     }
   }
-  console.log(
-    pairwise(pairs)
-      .map(([a, b]) => distance(a, b))
-      .reduce((a, b) => a + b, 0)
-  )
+  return pairwise(pairs)
+    .map(([a, b]) => distance(a, b))
+    .reduce((a, b) => a + b, 0)
 }
 const input = parse(read())
-part1(sample)
-part1(input)
+console.log(part1(sample))
+console.log(part1(input))
