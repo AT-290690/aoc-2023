@@ -61,8 +61,8 @@ const expansiion = (universe) => {
       if (universe[y][x]) h = 1
       if (universe[x][y]) v = 1
     }
-    horizontal.push((1 - h) * 1)
-    vertical.push((1 - v) * 1)
+    horizontal.push(1 - h)
+    vertical.push(1 - v)
   }
   return { horizontal, vertical }
 }

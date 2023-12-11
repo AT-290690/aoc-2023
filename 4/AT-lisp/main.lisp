@@ -19,7 +19,7 @@
                               (pi 
                                 x 
                                 (string:split " ")
-                                (array:select (lambda x x))
+                                (array:select (safety lambda x x))
                                 (cast:strings->numbers))))))
   (array index cards)))))))
 (let sample "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53
@@ -31,7 +31,7 @@ Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11")
 (let part1 (lambda input 
                       (pi 
                         input
-                          (array:map (lambda x (car (cdr x)))) 
+                          (array:map (safety lambda x (car (cdr x)))) 
                           (array:fold (lambda a b (do 
                               (let left (car b))
                               (let right (car (cdr b)))

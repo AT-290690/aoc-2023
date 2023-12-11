@@ -8,8 +8,8 @@
                                       (let dist (car (cdr input)))
                                       (pi time
                                           (math:sequence-n)
-                                          (array:map (lambda hold (* (- time hold) hold)))
-                                          (array:count-of (lambda rec (> rec dist)))))))
+                                          (array:map (safety lambda hold (* (- time hold) hold)))
+                                          (array:count-of (safety lambda rec (> rec dist)))))))
                              (math:product))))
 
 (assert
