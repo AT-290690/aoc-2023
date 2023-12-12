@@ -14,7 +14,7 @@ const sample = parse(`
 ????.#...#... 4,1,1
 ????.######..#####. 1,6,5
 ?###???????? 3,2,1`)
-const count = (left, right, memo = {}) => {
+const dp = (left, right, memo = {}) => {
   const key = left.join('') + right.join('')
   if (key in memo) return memo[key]
   else if (left.length === 0) return right.length === 0 ? 1 : 0
@@ -22,16 +22,16 @@ const count = (left, right, memo = {}) => {
   const [l] = left
   const [r] = right
   return (memo[key] =
-    (l === '.' || l === '?' ? count(left.slice(1), right, memo) : 0) +
+    (l === '.' || l === '?' ? dp(left.slice(1), right, memo) : 0) +
     ((l === '#' || l === '?') &&
     r <= left.length &&
     !left.slice(0, r).includes('.') &&
     (r === left.length || left[r] !== '#')
-      ? count(left.slice(r + 1), right.slice(1), memo)
+      ? dp(left.slice(r + 1), right.slice(1), memo)
       : 0))
 }
 const part1 = (input) =>
-  input.reduce((a, [left, right]) => a + count(left, right), 0)
+  input.reduce((a, [left, right]) => a + dp(left, right), 0)
 const part2 = (input) =>
   input
     .map(([left, right]) =>
@@ -48,7 +48,7 @@ const part2 = (input) =>
           [[], []]
         )
     )
-    .reduce((a, [left, right]) => a + count(left, right), 0)
+    .reduce((a, [left, right]) => a + dp(left, right), 0)
 const input = parse(read())
 console.log(part1(sample))
 console.log(part1(input))
