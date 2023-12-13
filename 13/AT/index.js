@@ -4,40 +4,9 @@ const parse = (input) =>
   input
     .trim()
     .split('\n\n')
-    .map(
-      (x) => x.split('\n').map((x) => x.split('').map((x) => +(x === '#')))
-      // .join('\n')
-    )
-// .join('\n\n')
+    .map((x) => x.split('\n').map((x) => x.split('').map((x) => +(x === '#'))))
 const sample = parse(`
 #.##..##.
-..#.##.#.
-##......#
-##......#
-..#.##.#.
-..##..##.
-#.#.##.#.
-
-#...##..#
-#....#..#
-..##..###
-#####.##.
-#####.##.
-..##..###
-#....#..#`)
-const sample2 = parse(`
-#.##..##.
-..#.##.#.
-##......#
-##......#
-..#.##.#.
-..##..##.
-#.#.##.#.
-
-`)
-
-const sample3 = parse(`
-..##..##.
 ..#.##.#.
 ##......#
 ##......#
@@ -112,4 +81,5 @@ const part1 = (mirrors) => {
   return incidence.reduce((a, b) => a + b, 0)
 }
 const input = parse(read())
+console.log(part1(sample))
 console.log(part1(input))
