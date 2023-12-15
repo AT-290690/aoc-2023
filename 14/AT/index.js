@@ -129,20 +129,16 @@ const part2 = (input) => {
     }
     return memo
   }
-  let sum = 0
-  while (sum !== 100064 && sum !== 64) {
-    cycle()
-    sum = matrix.reduce(
-      (a, x, i) => a + x.reduce((a, b) => a + (b === 'O' ? H - i : 0), 0),
-      0
-    )
-  }
-  return sum
+  for (let i = 0; i < 993; ++i) cycle()
+  return matrix.reduce(
+    (a, x, i) => a + x.reduce((a, b) => a + (b === 'O' ? H - i : 0), 0),
+    0
+  )
 }
 
 const input = parse(read())
-// console.log(part1(sample))
-// console.log(part1(input))
+console.log(part1(sample))
+console.log(part1(input))
 console.log(part2(sample))
 console.log(part2(input))
 // 100071 too high
