@@ -57,9 +57,8 @@ const part2 = (input) => {
     const key = matrix.map((x) => x.join('')).join('|')
     // if (memo.get(key) === 10) return [count, memo]
     ++count
-    if (memo.has(key)) {
-      memo.set(key, memo.get(key) + 1)
-    } else memo.set(key, 0)
+    if (memo.has(key)) memo.set(key, memo.get(key) + 1)
+    else memo.set(key, 0)
     for (let y = 0; y < H; ++y) {
       for (let x = 0; x < W; ++x) {
         const current = matrix[y][x]

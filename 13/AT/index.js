@@ -104,7 +104,7 @@ const part1 = (mirrors) => {
   for (const mirror of mirrors) {
     const hor = traverse(mirror)
     const ver = traverse(mirror.rotateRight().rotateRight().rotateRight())
-    incidence.push(hor.length > ver.length ? hor.at(0) * 100 : ver.at(0))
+    incidence.push(hor.length ? hor.at(0) * 100 : ver.at(0))
   }
   return incidence.reduce((a, b) => a + b, 0)
 }
@@ -113,6 +113,7 @@ const part2 = (mirrors) => {
   const rec = (offset, count, arr, out) => {
     const left = offset - count
     const right = offset + count + 1
+
     if (arr[left] && arr[right]) {
       out.push(+(arr[left] === arr[right]))
       return rec(offset, count + 1, arr, out)
@@ -120,19 +121,27 @@ const part2 = (mirrors) => {
       return out
     }
   }
-  const bit = (number, n) => number ^ (1 << n)
+  const bit = (number, n) => {
+    // const x = [...number.toString(2)]
+    // x[n] = 1 - +x[n]
+    // return parseInt(x.join(''), 2)
+    return number ^ (1 << n)
+  }
   const traverse = (mirror) => {
     const parsed = mirror.map((x) => parseInt(x.join(''), 2))
     const out = []
-    for (let j = 0; j < parsed.length; ++j) {
+    const len = mirror[0].length
+    for (let j = 0; j < len; ++j) {
       const idxs = []
       for (let i = 0; i < parsed.length; ++i) {
         const copy = [...parsed]
         copy[i] = bit(parsed[i], j)
         idxs.push([i, rec(i, 0, copy, [])])
       }
-      const [idx, arr] = idxs.find((x) => !x[1].some((x) => x === 0))
-      out.push(arr.length === 0 ? [] : [idx + 1, idx + 2])
+      console.log({ idxs })
+      const f = idxs.find((x) => x[1].filter((x) => x === 1).length === len - 1)
+      if (!f) return []
+      out.push(arr.length === 0 ? [] : [f[0] + 1, f[0] + 2])
     }
     return out.filter((x) => x.length).flat(1)
   }
@@ -141,11 +150,11 @@ const part2 = (mirrors) => {
     const hor = traverse(mirror)
     const ver = traverse(mirror.rotateRight().rotateRight().rotateRight())
     console.log({ hor, ver })
-    incidence.push(hor.length > ver.length ? hor.at(0) * 100 : ver.at(0))
+    incidence.push(hor.length ? hor.at(0) * 100 : ver.at(0))
   }
   return incidence.reduce((a, b) => a + b, 0)
 }
-const input = parse(read())
-console.log(part1(sample))
-console.log(part1(input))
-// console.log(part2(sample))
+// const input = parse(read())
+// console.log(part1(sample))
+// console.log(part1(input))
+console.log(part2(sample))
