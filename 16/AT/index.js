@@ -31,30 +31,29 @@ const parse = (input) => {
     .map((x) => [...x])
 }
 const sample = parse(read('sample'))
-const part1 = (input) => {
-  const isAbove = (light, tile) => light.y < tile.y
-  const isBelow = (light, tile) => light.y > tile.y
-  const isRight = (light, tile) => light.x > tile.x
-  const isLeft = (light, tile) => light.x < tile.x
-  const isVertical = (light, tile) => light.x === tile.x
-  const isHorizontal = (light, tile) => light.y === tile.y
+const isAbove = (light, tile) => light.y < tile.y
+const isBelow = (light, tile) => light.y > tile.y
+const isRight = (light, tile) => light.x > tile.x
+const isLeft = (light, tile) => light.x < tile.x
+const isVertical = (light, tile) => light.x === tile.x
+const isHorizontal = (light, tile) => light.y === tile.y
+
+const toKey = ({ y, x }) => `${y}-${x}`
+const fromKey = (key) => {
+  const k = key.split('-')
+  return { y: k[0], x: k[1] }
+}
+const isInBounds = (matrix, { y, x }) => !!matrix[y] && !!matrix[y][x]
+const laser = (matrix, y, x, dy, dx) => {
   const track = new Set()
   const visited = new Set()
-  const toKey = ({ y, x }) => `${y}-${x}`
-  const fromKey = (key) => {
-    const k = key.split('-')
-    return { y: k[0], x: k[1] }
-  }
-  const isInBounds = ({ y, x }) => !!matrix[y] && !!matrix[y][x]
-  const matrix = input
-  let count = 0
   const beam = (y, x, dy, dx) => {
     const Y = y + dy
     const X = x + dx
     const light = { y, x }
     const tile = { y: Y, x: X }
     track.add(toKey(light))
-    if (!isInBounds(tile)) return
+    if (!isInBounds(matrix, tile)) return
     const key = toKey(tile)
     const IS_VERTICAL = isVertical(light, tile)
     const IS_HORIZONTAL = isHorizontal(light, tile)
@@ -113,15 +112,18 @@ const part1 = (input) => {
       // break
     }
   }
-  if (matrix[0][0] === '[') beam(0, 0, -1, 0)
-  else if (matrix[0][0] === ']') beam(0, 0, 1, 0)
-  else {
-    beam(0, 0, 0, 1)
-  }
-
-  // for (const { y, x } of [...track.values()].map(fromKey)) matrix[y][x] = '#'
-  // console.log(matrix.map((x) => x.join('')).join('\n'))
-  console.log(track.size)
+  if (matrix[y][x] === '[') beam(y, x, -1, dx)
+  else if (matrix[y][x] === ']') beam(y, x, 1, dx)
+  else beam(y, x, dy, dx)
+  // const copy = [...matrix].map((x) => [...x])
+  // for (const { y, x } of [...track.values()].map(fromKey)) copy[y][x] = '#'
+  // console.log('')
+  // console.log(copy.map((x) => x.join('')).join('\n'))
+  // console.log('')
+  return track.size
+}
+const part1 = (input) => {
+  return laser(input, 0, 0, 0, 1)
   // const m = [...track.values()].map(fromKey).reverse()
   // const print = () => {
   //   if (m.length) {
@@ -137,6 +139,18 @@ const part1 = (input) => {
   // console.clear()
   // print()
 }
+const part2 = (input) => {
+  let maximum = -Infinity
+  for (let i = 0; i < input.length; ++i) {
+    maximum = Math.max(maximum, laser(input, 0, i, 1, 0))
+    maximum = Math.max(maximum, laser(input, input.length - 1, i, -1, 0))
+    maximum = Math.max(maximum, laser(input, i, 0, 0, 1))
+    maximum = Math.max(maximum, laser(input, i, input.length - 1, 0, -1))
+  }
+  return maximum
+}
 const input = parse(read())
 console.log(part1(sample))
 console.log(part1(input))
+console.log(part2(sample))
+console.log(part2(input))
