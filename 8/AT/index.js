@@ -49,7 +49,7 @@ const input = parse(read())
 //     while (typeof result === 'function') result = result()
 //     return result
 //   }
-// const part1Rec = ([dirs, adj]) => {
+// const part1Rec = ([dirs, adj], rec) => {
 //   const move = tco(
 //     (rec = (source, target, step = 0) => {
 //       const node = adj[source][dirs[step % dirs.length]]

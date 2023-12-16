@@ -1,2 +1,3 @@
 import { readFileSync } from 'fs'
-export const read = () => readFileSync(`${process.argv[1]}/input.txt`, 'utf-8')
+export const read = (file = 'input') =>
+  readFileSync(`${process.argv[1]}/${file}.txt`, 'utf-8')
