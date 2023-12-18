@@ -149,7 +149,46 @@ const part1 = (input) => {
     }
   }
 }
-
+const part2 = (input) => {
+  const isInBounds = (y, x, matrix) =>
+    y >= 0 && y < matrix.length && x >= 0 && x < matrix[0].length
+  const isAtEnd = (y, x, matrix, n) =>
+    n >= 4 && y === matrix.length - 1 && x === matrix[0].length - 1
+  const pq = new PQ((a, b) => a.at(0) < b.at(0))
+  const visited = new Set()
+  const matrix = input
+  pq.push(identity())
+  while (!pq.isEmpty()) {
+    const current = pq.pop()
+    const [w, y, x, dy, dx, n] = current
+    if (isAtEnd(y, x, matrix, n)) return w
+    const key = toPathKey(current)
+    if (visited.has(key)) continue
+    visited.add(key)
+    const dirKey = toDirKey(dy, dx)
+    const inverted = toDirKey(-dy, -dx)
+    if (n >= 4 || dirKey === zeroKey) {
+      for (const [dy1, dx1] of dirs) {
+        const key = toDirKey(dy1, dx1)
+        if (key !== dirKey && key !== inverted) {
+          const Y = y + dy1
+          const X = x + dx1
+          if (isInBounds(Y, X, matrix))
+            pq.push([w + matrix[Y][X], Y, X, dy1, dx1, 1])
+        }
+      }
+    }
+    if (n < 10 && dirKey !== zeroKey) {
+      const Y = y + dy
+      const X = x + dx
+      if (isInBounds(Y, X, matrix))
+        pq.push([w + matrix[Y][X], Y, X, dy, dx, n + 1])
+    }
+  }
+}
 const input = parse(read())
 console.log(part1(sample))
 console.log(part1(input))
+console.log(part2(sample))
+console.log(part2(sample2))
+console.log(part2(input))
