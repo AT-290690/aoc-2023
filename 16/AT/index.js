@@ -69,9 +69,6 @@ const laser = (matrix, y, x, dy, dx) => {
         else if (IS_RIGHT) beam(Y, X, -1, 0)
         else if (IS_ABOVE) beam(Y, X, 0, 1)
         else if (IS_BELOW) beam(Y, X, 0, -1)
-        // else if (IS_BELOW) beam(Y, X, 0, -1)
-        // else if (IS_ABOVE) beam(Y, X, 0, 1)
-        // else beam(Y, X, dy, dx)
         break
       case ']':
         // a rightward-moving beam that encounters a / mirror would continue upward in the mirror's column
@@ -79,9 +76,6 @@ const laser = (matrix, y, x, dy, dx) => {
         else if (IS_RIGHT) beam(Y, X, 1, 0)
         else if (IS_ABOVE) beam(Y, X, 0, -1)
         else if (IS_BELOW) beam(Y, X, 0, 1)
-        // else if (IS_BELOW) beam(Y, X, 0, 1)
-        // else if (IS_ABOVE) beam(Y, X, 0, -1)
-        // else beam(Y, X, dy, dx)
         break
       // If the beam encounters the pointy end of a splitter (| or -), the beam passes through the splitter as if the splitter were empty space.
       // For instance, a rightward-moving beam that encounters a - splitter would continue in the same direction.

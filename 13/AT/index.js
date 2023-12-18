@@ -206,8 +206,10 @@ const part2 = (mirrors) => {
   }
 
   const traverse = (parsed) => {
-    const idxs = []
-    for (let i = 0; i < parsed.length; ++i) idxs.push([i, rec(i, parsed)])
+    const idxs = parsed.reduce(
+      (a, _, i) => (a.push([i, rec(i, parsed)]), a),
+      []
+    )
     const [idx, arr] = idxs.find((x) => !x[1].some((x) => x === 0))
     if (arr.length === 0) return []
     return [idx + 1, idx + 2]
@@ -215,7 +217,9 @@ const part2 = (mirrors) => {
   // const bit = (number, n) => number ^ (1 << n)
   const incidence = []
   for (const mirror of mirrors) {
-    // const len = mirror[0].length
+    const hor = traverse(mirror)
+    const ver = traverse(mirror.rotateLeft())
+    let solution = hor.length ? hor.at(0) * 100 : ver.at(0)
     for (let i = 0; i < mirror.length; ++i) {
       for (let j = 0; j < mirror[0].length; ++j) {
         const copy = [...mirror].map((x) => [...x])
@@ -224,14 +228,19 @@ const part2 = (mirrors) => {
         const ver = traverse(copy.rotateLeft())
         if (hor.length || ver.length) {
           const res = hor.length ? hor.at(0) * 100 : ver.at(0)
-          incidence.push(res)
-          break
+          if (res !== solution) {
+            solution = res
+            break
+          }
         }
       }
     }
+    incidence.push(solution)
   }
-  console.log({ incidence })
   return incidence.reduce((a, b) => a + b, 0)
 }
-// const input = parse(read())
+const input = parse(read())
 console.log(part2(sample))
+// 23731 too low
+// 10531
+// first part was 33520
