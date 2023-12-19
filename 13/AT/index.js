@@ -239,7 +239,7 @@ const part2 = (mirrors) => {
   }
   return incidence.reduce((a, b) => a + b, 0)
 }
-const input = parse(read())
+// const input = parse(read())
 console.log(part2(sample))
 // 23731 too low
 // 10531

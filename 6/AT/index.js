@@ -13,15 +13,11 @@ const parse = (input) =>
     )
 const parse2 = (input) =>
   parse(input).map((x) => [+x.reduce((a, b) => a + b, '')])
-const input1 = parse(read())
-const input2 = parse2(read())
-const sample1 = parse(`
+const input = read()
+const sample = `
 Time:      7  15   30
-Distance:  9  40  200`)
-const sample2 = parse2(`
-Time:      7  15   30
-Distance:  9  40  200`)
-const solve = ([times, distances]) => {
+Distance:  9  40  200`
+const part1 = ([times, distances]) => {
   let out = 1
   for (let i = 0; i < times.length; ++i) {
     const time = times[i]
@@ -33,7 +29,8 @@ const solve = ([times, distances]) => {
   }
   return out
 }
-console.log(solve(sample1))
-console.log(solve(input1))
-console.log(solve(sample2))
-console.log(solve(input2))
+const part2 = part1
+console.log(part1(parse(sample)))
+console.log(part1(parse(input)))
+console.log(part2(parse2(sample)))
+console.log(part2(parse2(input)))
